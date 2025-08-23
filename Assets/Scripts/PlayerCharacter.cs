@@ -20,8 +20,9 @@ public class PlayerCharacter : Character
         renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
     }
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         foreach (Collider _collider in GetComponentsInChildren<Collider>())
         {
             if (_collider.attachedRigidbody != null)

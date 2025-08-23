@@ -79,7 +79,7 @@ public class CameraRig : MonoBehaviour
             );
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, currentState.FieldOfView, Time.deltaTime / fieldOfViewDamping);
         if (player == null) return;
-        transform.position = Vector3.Lerp(transform.position, (currentState.Target == CameraState.CameraTarget.Root) ? player.transform.position : player.Characters[0].Head.position, Time.deltaTime / currentState.PanDamping);
+        transform.position = Vector3.Lerp(transform.position, (currentState.Target == CameraState.CameraTarget.Root) ? player.transform.position : player.Characters[0].Avatar.Head.position, Time.deltaTime / currentState.PanDamping);
 
         if (!isRotating) return;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(targetYaw * Vector3.up), Time.deltaTime / yawDamping);
@@ -117,7 +117,7 @@ public class CameraRig : MonoBehaviour
         }
         pitchAxis.transform.localPosition = currentState.Offset;
         cam.transform.localPosition = Vector3.back * currentState.Distance;
-        transform.position = (currentState.Target == CameraState.CameraTarget.Root) ? player.transform.position : player.Characters[0].Head.transform.position;
+        transform.position = (currentState.Target == CameraState.CameraTarget.Root) ? player.transform.position : player.Characters[0].Avatar.Head.transform.position;
     }
 
     float ClampPitch(float _value)

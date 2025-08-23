@@ -1,15 +1,16 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField] Transform head;
-    [SerializeField] Transform spine;
 
     CharacterStats stats;
 
+    Avatar avatar;
     Animator anim;
     Weapon weapon;
     IKLook ikLook;
+    Collider[] colliders;
 
     CharacterCanvas canvas;
 
@@ -21,19 +22,21 @@ public class Character : MonoBehaviour
 
     public virtual void Awake()
     {
-        anim = GetComponentInChildren<Animator>();
-        weapon = GetComponentInChildren<Weapon>();
-        rbs = GetComponentsInChildren<Rigidbody>();
-        controller = GetComponentInParent<CharacterController>();
-        canvas = GetComponentInChildren<CharacterCanvas>();
 
         if(stats == null)
             stats = new CharacterStats();
     }
 
-    public virtual void Start() 
+    public virtual void Start()
     {
+        avatar = GetComponentInChildren<Avatar>();
+        anim = GetComponentInChildren<Animator>();
+        weapon = GetComponentInChildren<Weapon>();
+        rbs = GetComponentsInChildren<Rigidbody>();
+        controller = GetComponentInParent<CharacterController>();
+        canvas = GetComponentInChildren<CharacterCanvas>();
         ikLook = GetComponentInChildren<IKLook>();
+        colliders = GetComponents<Collider>();
     }
 
     public virtual void OnAnimatorMove()
@@ -62,11 +65,9 @@ public class Character : MonoBehaviour
         Base = 0
     }
 
+    public Avatar Avatar { get { return avatar; } }
+
     public Animator Anim { get { return anim; } }
-
-    public Transform Head { get { return head; } }
-
-    public Transform Spine { get { return spine; } }
 
     public Weapon Weapon { get { return weapon; } }
 
@@ -77,6 +78,8 @@ public class Character : MonoBehaviour
     public CharacterStats Stats { get { return stats; } }
 
     public IKLook IKLook { get { return ikLook; } }
+
+    public Collider[] Colliders { get { return colliders; } }
 
     public class CharacterStats
     {

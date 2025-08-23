@@ -20,7 +20,7 @@ public class LocalPlayerInput : MonoBehaviour
     InputAction rotateAction;
     InputAction zoomAction;
 
-    InputAction ragdollAction;
+    InputAction clearAction;
     InputAction timeAction;
     InputAction spawnTargetAction;
 
@@ -79,8 +79,8 @@ public class LocalPlayerInput : MonoBehaviour
         #endregion
 
         #region Development Actions
-        ragdollAction = input.actions.FindAction("Ragdoll Test");
-        ragdollAction.performed += OnRagdollPerformed;
+        clearAction = input.actions.FindAction("Clear Bodies");
+        clearAction.performed += OnClearPerformed;
 
         timeAction = input.actions.FindAction("Warp Time");
         timeAction.performed += OnTimePerformed;
@@ -173,9 +173,9 @@ public class LocalPlayerInput : MonoBehaviour
     #endregion
 
     #region Development Callbacks
-    void OnRagdollPerformed(InputAction.CallbackContext _context)
+    void OnClearPerformed(InputAction.CallbackContext _context)
     {
-        GameManager.Instance.Enemy.Ragdoll();
+        GameManager.Instance.ClearBodies();
     }
 
     void OnTimePerformed(InputAction.CallbackContext _context)
@@ -185,7 +185,7 @@ public class LocalPlayerInput : MonoBehaviour
 
     void OnSpawnTargetPerformed(InputAction.CallbackContext _context)
     {
-        GameManager.Instance.SpawnTarget();
+        GameManager.Instance.SpawnTargets();
     }
     #endregion
 }

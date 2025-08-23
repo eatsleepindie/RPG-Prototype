@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] LocalPlayer[] players;
     [SerializeField] Enemy enemyPrefab;
-    [SerializeField] Transform spawnPoint;
+    [SerializeField] Transform[] spawnPoints;
 
     [Range(0f, 1f)]
     [SerializeField] float slowedTime = 0.33f;
@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject dummyPrefab;
     [SerializeField] Slider dummyHealthBar;
 
-    Enemy enemy;
-
     float cachedFixedDelta;
 
     private void Awake()
@@ -31,13 +29,11 @@ public class GameManager : MonoBehaviour
         cachedFixedDelta = Time.fixedDeltaTime;
 
         Enemy[] _enemies = GameObject.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
-        if (_enemies.Length > 0)
-            enemy = _enemies[0];
-        else
-            SpawnTarget();
+        if (_enemies.Length == 0)
+            SpawnTargets();
     }
 
-    public void SpawnTarget()
+    public void SpawnTargets()
     {
         List<GameObject> _targets = new List<GameObject>(GameObject.FindGameObjectsWithTag("Target"));
         for (int _i = _targets.Count - 1; _i >= 0; _i--)
@@ -45,15 +41,37 @@ public class GameManager : MonoBehaviour
         switch(dummyMode)
         {
             default:
-                enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-                Instantiate(dummyPrefab, enemy.transform);
-                dummyHealthBar = enemy.GetComponentInChildren<CharacterCanvas>().GetComponentInChildren<Slider>();
-                dummyHealthBar.value = 100f;
+                foreach(Transform _spawnPoint in spawnPoints)
+                {
+                    Ray _ray = new Ray(_spawnPoint.TransformPoint(Vector3.up * 5), Vector3.down);
+                    if(!Physics.Raycast(
+                        _ray.origin,
+                        _ray.direction,
+                        3f,
+                        EnemyMask
+                        ))
+                    {
+                        Enemy _enemy = Instantiate(enemyPrefab, _spawnPoint.position, _spawnPoint.rotation);
+                        Instantiate(dummyPrefab, _enemy.transform);
+                        dummyHealthBar = _enemy.GetComponentInChildren<CharacterCanvas>().GetComponentInChildren<Slider>();
+                        dummyHealthBar.value = 100f;
+                    }
+                }
                 break;
             case DummyMode.Running:
                 //Enemy _enemy = Instantiate(dummyPrefab, Vector3.forward * 15f, Quaternion.Euler(Vector3.up * 180f));
                 //_enemy.GetComponentInChildren<Animator>().Play("Run");
                 break;
+        }
+    }
+
+    public void ClearBodies()
+    {
+        Enemy[] _enemies = GameObject.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+        foreach(Enemy _enemy in _enemies)
+        {
+            if (_enemy.Anim.enabled) continue;
+            Destroy(_enemy.gameObject);
         }
     }
 
@@ -66,8 +84,6 @@ public class GameManager : MonoBehaviour
     public LocalPlayer[] Players { get { return players; } }
 
     public Slider DummyHealthBar { get { return dummyHealthBar; } }
-
-    public Enemy Enemy { get { return enemy; } }
 
     public enum DummyMode
     {

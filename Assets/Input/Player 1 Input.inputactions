@@ -132,7 +132,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ragdoll Test",
+                    "name": "Clear Bodies",
                     "type": "Button",
                     "id": "9772336b-b5e1-43b1-959e-e76e4e54f3b0",
                     "expectedControlType": "",
@@ -365,11 +365,11 @@
                 {
                     "name": "",
                     "id": "bc20e533-dbe0-46d4-aba6-d2a6c2d119f0",
-                    "path": "<Keyboard>/t",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ragdoll Test",
+                    "action": "Clear Bodies",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

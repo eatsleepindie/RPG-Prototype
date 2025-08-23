@@ -16,7 +16,10 @@ public class Enemy : Character
     public override void Start()
     {
         base.Start();
-        base.IKLook.Target = GameManager.Instance.Players[0].Characters[0].Head;
+        base.IKLook.Target = GameManager.Instance.Players[0].Characters[0].Avatar.Head;
+
+        foreach (Rigidbody _rb in base.Rbs)
+            _rb.GetComponent<Collider>().isTrigger = false;
     }
 
     private void Update()
@@ -33,7 +36,6 @@ public class Enemy : Character
 
     public override void Ragdoll()
     {
-        Debug.Log("Ragdoll");
         foreach(Rigidbody _rb in base.Rbs)
         {
             _rb.isKinematic = false;
@@ -48,8 +50,10 @@ public class Enemy : Character
         // temporary
         Ragdoll();
 
-        Rigidbody _spine = base.Spine.GetComponent<Rigidbody>();
+        Rigidbody _spine = base.Avatar.Spine.GetComponent<Rigidbody>();
         Vector3 _direction = GameManager.Instance.Players[0].transform.forward;
+        foreach (Collider _collider in base.Colliders)
+            _collider.enabled = false;
         _direction.y = 0f;
         _direction = Quaternion.AngleAxis(Random.Range(-kickOffset, kickOffset), Vector3.up) * _direction.normalized;
         _spine.AddForce(

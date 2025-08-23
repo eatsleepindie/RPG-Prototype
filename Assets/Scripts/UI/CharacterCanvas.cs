@@ -19,7 +19,6 @@ public class CharacterCanvas : UICanvas
     {
         base.Start();
 
-        Debug.Log("START");
         character.onDamageApplied += UpdateHealth;
     }
 
