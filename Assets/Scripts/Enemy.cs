@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Enemy : Character
 {
+    [SerializeField] EnemyInfo info;
+
     [SerializeField] float forceAmount = 250f;
     [SerializeField] float upwardsForce = 100f;
     [SerializeField] float kickOffset = 15f;
@@ -11,11 +13,17 @@ public class Enemy : Character
     public override void Awake()
     {
         base.Awake();
+
+        foreach (GameObject _part in info.AvatarParts)
+            Instantiate(_part, transform);
     }
 
     public override void Start()
     {
         base.Start();
+
+        base.Anim.avatar = info.Rig;
+        base.Anim.runtimeAnimatorController = info.Controller;
         base.IKLook.Target = GameManager.Instance.Players[0].Characters[0].Avatar.Head;
 
         foreach (Rigidbody _rb in base.Rbs)

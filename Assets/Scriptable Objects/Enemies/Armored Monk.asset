@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a43006a5b76b9419ca24238a4e896c, type: 3}
+  m_Name: Armored Monk
+  m_EditorClassIdentifier: 
+  Rig: {fileID: 9000000, guid: cc1a5f7ad5ff980499eb973fdc1436e5, type: 3}
+  Controller: {fileID: 9100000, guid: 2b6146324320f184188532af32e05723, type: 2}
+  AvatarParts:
+  - {fileID: 919132149155446097, guid: 132ee9d5316546b44b6966bdbf2730e4, type: 3}
+  - {fileID: 919132149155446097, guid: bca5ab53d073014449542330ac7a9072, type: 3}
+  - {fileID: 919132149155446097, guid: 54903788a7d6e4348adfdcbf6b931ca6, type: 3}
+  - {fileID: 919132149155446097, guid: ed2731e3475b5914f98019c7a76af770, type: 3}
+  - {fileID: 919132149155446097, guid: e31aa250d35e93a43809ea1f5c98a0e8, type: 3}
+  - {fileID: 919132149155446097, guid: 44da2e79780b66642b40c33ff07f7106, type: 3}
+  - {fileID: 919132149155446097, guid: c4add6ecf29f2fb47b7e38eeeffc7c12, type: 3}
+  - {fileID: 919132149155446097, guid: 0798e6741c35c8345aaf43253c78e625, type: 3}
+  - {fileID: 919132149155446097, guid: f58f530b0a2900f47984db978ffe2e76, type: 3}
+  - {fileID: 919132149155446097, guid: 7f0802a0cd588ef498b58380edc24223, type: 3}
+  - {fileID: 919132149155446097, guid: 8524fe736ebca8a4dba88e4988d0164f, type: 3}
+  - {fileID: 919132149155446097, guid: 48d8d46f24acee841bf81b7c21b6c377, type: 3}
+  - {fileID: 919132149155446097, guid: f28d3fb17d0b8e44bbc58e59734b2e25, type: 3}
+  - {fileID: 919132149155446097, guid: 82c89fde645ca3c42b4899be9474a582, type: 3}
+  - {fileID: 919132149155446097, guid: a7285c01df5aba74cab0de8ab5516ad2, type: 3}
+  - {fileID: 919132149155446097, guid: 6e3a53445da3ec240af37c8243886300, type: 3}

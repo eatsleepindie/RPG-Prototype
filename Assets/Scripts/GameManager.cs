@@ -15,12 +15,6 @@ public class GameManager : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] float slowedTime = 0.33f;
 
-    [Space(7.5f)]
-    [Header("Target Dummy")]
-    [SerializeField] DummyMode dummyMode;
-    [SerializeField] GameObject dummyPrefab;
-    [SerializeField] Slider dummyHealthBar;
-
     float cachedFixedDelta;
 
     private void Awake()
@@ -38,30 +32,18 @@ public class GameManager : MonoBehaviour
         List<GameObject> _targets = new List<GameObject>(GameObject.FindGameObjectsWithTag("Target"));
         for (int _i = _targets.Count - 1; _i >= 0; _i--)
             Destroy(_targets[_i]);
-        switch(dummyMode)
+        foreach(Transform _spawnPoint in spawnPoints)
         {
-            default:
-                foreach(Transform _spawnPoint in spawnPoints)
-                {
-                    Ray _ray = new Ray(_spawnPoint.TransformPoint(Vector3.up * 5), Vector3.down);
-                    if(!Physics.Raycast(
-                        _ray.origin,
-                        _ray.direction,
-                        3f,
-                        EnemyMask
-                        ))
-                    {
-                        Enemy _enemy = Instantiate(enemyPrefab, _spawnPoint.position, _spawnPoint.rotation);
-                        Instantiate(dummyPrefab, _enemy.transform);
-                        dummyHealthBar = _enemy.GetComponentInChildren<CharacterCanvas>().GetComponentInChildren<Slider>();
-                        dummyHealthBar.value = 100f;
-                    }
-                }
-                break;
-            case DummyMode.Running:
-                //Enemy _enemy = Instantiate(dummyPrefab, Vector3.forward * 15f, Quaternion.Euler(Vector3.up * 180f));
-                //_enemy.GetComponentInChildren<Animator>().Play("Run");
-                break;
+            Ray _ray = new Ray(_spawnPoint.TransformPoint(Vector3.up * 5), Vector3.down);
+            if(!Physics.Raycast(
+                _ray.origin,
+                _ray.direction,
+                3f,
+                EnemyMask
+                ))
+            {
+                Enemy _enemy = Instantiate(enemyPrefab, _spawnPoint.position, _spawnPoint.rotation);
+            }
         }
     }
 
@@ -82,8 +64,6 @@ public class GameManager : MonoBehaviour
     }
 
     public LocalPlayer[] Players { get { return players; } }
-
-    public Slider DummyHealthBar { get { return dummyHealthBar; } }
 
     public enum DummyMode
     {

@@ -6,7 +6,7 @@ public class Character : MonoBehaviour
 
     CharacterStats stats;
 
-    Avatar avatar;
+    CharacterAvatar avatar;
     Animator anim;
     Weapon weapon;
     IKLook ikLook;
@@ -29,7 +29,7 @@ public class Character : MonoBehaviour
 
     public virtual void Start()
     {
-        avatar = GetComponentInChildren<Avatar>();
+        avatar = GetComponentInChildren<CharacterAvatar>();
         anim = GetComponentInChildren<Animator>();
         weapon = GetComponentInChildren<Weapon>();
         rbs = GetComponentsInChildren<Rigidbody>();
@@ -65,7 +65,7 @@ public class Character : MonoBehaviour
         Base = 0
     }
 
-    public Avatar Avatar { get { return avatar; } }
+    public CharacterAvatar Avatar { get { return avatar; } }
 
     public Animator Anim { get { return anim; } }
 
