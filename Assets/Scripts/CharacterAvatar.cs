@@ -37,6 +37,7 @@ public class CharacterAvatar : MonoBehaviour
 
         foreach(SkinnedMeshRenderer _rend in GetComponentsInChildren<SkinnedMeshRenderer>())
         {
+            _rend.updateWhenOffscreen = true;
             if (_rend == _mainRend) continue;
             CopyBonesWithDictionary(_mainRend, _rend);
         }

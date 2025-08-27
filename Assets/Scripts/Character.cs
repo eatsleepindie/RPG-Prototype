@@ -23,7 +23,6 @@ public class Character : MonoBehaviour
 
     public virtual void Awake()
     {
-
         if(stats == null)
             stats = new CharacterStats();
     }

@@ -23,8 +23,6 @@ public class Enemy : Character
             _bodyPart.Type = _part.Type;
             _bodyPart.Side = _part.Side;
 
-
-
             if (debug)
             {
                 foreach(Material _mat in _rend.materials)
@@ -54,7 +52,8 @@ public class Enemy : Character
     public override void OnAnimatorMove()
     {
         base.OnAnimatorMove();
-        base.Controller.Move(base.Anim.deltaPosition);
+        if(base.Controller != null && base.Controller.enabled)
+            base.Controller.Move(base.Anim.deltaPosition);
     }
 
     public override void Ragdoll()

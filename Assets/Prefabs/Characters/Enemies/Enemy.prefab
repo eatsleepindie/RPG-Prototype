@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6748418521144109608}
   - component: {fileID: 7406191918616211792}
   - component: {fileID: 840174728589261377}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,8 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: {fileID: 11400000, guid: 70556e2125ca6b544a65d39838edbda6, type: 2}
-  forceAmount: 250
-  upwardsForce: 100
+  forceAmount: 100
+  upwardsForce: 20
   kickOffset: 15
   debug: 1
 --- !u!114 &8182872840557417474
