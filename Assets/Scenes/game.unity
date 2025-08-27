@@ -1103,6 +1103,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2269057287373133452, guid: 795239c489af6b94aa9dcb171ddccbef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5380594743844097496, guid: 795239c489af6b94aa9dcb171ddccbef, type: 3}
       propertyPath: 'mouseSensitivitySliders.Array.data[0]'
       value: 

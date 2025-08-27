@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField] CharacterInfo info;
 
     CharacterStats stats;
 
@@ -80,6 +81,8 @@ public class Character : MonoBehaviour
     public IKLook IKLook { get { return ikLook; } }
 
     public Collider[] Colliders { get { return colliders; } }
+
+    public CharacterInfo Info { get { return info; } }
 
     public class CharacterStats
     {

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7406191918616211792}
   - component: {fileID: 840174728589261377}
   m_Layer: 0
-  m_Name: Armored Monk
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   forceAmount: 250
   upwardsForce: 100
   kickOffset: 15
-  bodyParts: []
+  debug: 1
 --- !u!114 &8182872840557417474
 MonoBehaviour:
   m_ObjectHideFlags: 0

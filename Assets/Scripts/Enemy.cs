@@ -1,29 +1,44 @@
+using UnityEditor;
 using UnityEngine;
 
 public class Enemy : Character
 {
-    [SerializeField] EnemyInfo info;
-
     [SerializeField] float forceAmount = 250f;
     [SerializeField] float upwardsForce = 100f;
     [SerializeField] float kickOffset = 15f;
 
-    [SerializeField] EnemyBodyPart[] bodyParts;
+    [Space(5f)]
+    [Header("Debug")]
+    [SerializeField] bool debug;
 
     public override void Awake()
     {
         base.Awake();
 
-        foreach (GameObject _part in info.AvatarParts)
-            Instantiate(_part, transform);
+        foreach (CharacterInfo.CharacterAvatarPart _part in base.Info.AvatarParts)
+        {
+            GameObject _obj = Instantiate(_part.Mesh, transform);
+            SkinnedMeshRenderer _rend = _obj.GetComponentInChildren<SkinnedMeshRenderer>();
+            BodyPart _bodyPart = _rend.gameObject.AddComponent(typeof(BodyPart)) as BodyPart;
+            _bodyPart.Type = _part.Type;
+            _bodyPart.Side = _part.Side;
+
+
+
+            if (debug)
+            {
+                foreach(Material _mat in _rend.materials)
+                    _mat.color = _part.DebugColor;
+            }
+        }
     }
 
     public override void Start()
     {
         base.Start();
 
-        base.Anim.avatar = info.Rig;
-        base.Anim.runtimeAnimatorController = info.Controller;
+        base.Anim.avatar = base.Info.Rig;
+        base.Anim.runtimeAnimatorController = base.Info.Controller;
         base.IKLook.Target = GameManager.Instance.Players[0].Characters[0].Avatar.Head;
 
         foreach (Rigidbody _rb in base.Rbs)
@@ -70,40 +85,17 @@ public class Enemy : Character
             );
     }
 
+    /*
     void DealBodyPartDamage(EnemyBodyPart _bodyPart)
     {
         base.ApplyDamage(_bodyPart.Health);
     }
+    */
 
     public void ApplyCutDamage()
     {
         
     }
 
-    public enum BodyPart
-    {
-        Hips = 0,
-        LeftUpLeg = 1,
-        LeftLeg = 2,
-        LeftFoot = 3,
-        RightUpLeg = 4,
-        RightLeg = 5,
-        RightFoot = 6,
-        Spine1 = 7,
-        LeftArm = 8,
-        LeftForeArm = 9,
-        LeftHand = 10,
-        Head = 11,
-        RightArm = 12,
-        RightForeArm = 13,
-        RightHand = 14
-    }
-
-    [System.Serializable]
-    public class EnemyBodyPart
-    {
-        public BodyPart BodyPart;
-        [Range(0f, 250f)]
-        public float Health = 100f;
-    }
+    public EnemyInfo EnemyInfo { get { return (EnemyInfo)base.Info; } }
 }

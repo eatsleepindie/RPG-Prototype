@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class BodyPart : MonoBehaviour
+public class RagdollPart : MonoBehaviour
 {
     CharacterAvatar avatar;
 
     public CharacterInfo.CharacterAvatarPartType Type;
-    public CharacterInfo.CharacterAvatarPartSide Side;
 
     private void Awake()
     {

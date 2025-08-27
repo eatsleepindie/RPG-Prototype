@@ -5,21 +5,23 @@ public class CharacterAvatar : MonoBehaviour
 {
     [SerializeField] bool combineRenderers;
 
+    Character character;
     Transform head;
     Transform spine;
 
     void Awake()
     {
+        character = GetComponentInParent<Character>();
         if (combineRenderers) CombineRenderers();
 
-        foreach (BodyPart _part in GetComponentsInChildren<BodyPart>())
+        foreach (RagdollPart _part in GetComponentsInChildren<RagdollPart>())
         {
-            switch (_part.Part)
+            switch (_part.Type)
             {
-                case BodyPart.BodyPartType.Head:
+                case CharacterInfo.CharacterAvatarPartType.Head:
                     head = _part.transform;
                     break;
-                case BodyPart.BodyPartType.Spine:
+                case CharacterInfo.CharacterAvatarPartType.Torso:
                     spine = _part.transform;
                     break;
             }
@@ -27,8 +29,11 @@ public class CharacterAvatar : MonoBehaviour
     }
 
     void CombineRenderers()
-    { 
-        SkinnedMeshRenderer _mainRend = GetComponentInChildren<SkinnedMeshRenderer>();
+    {
+        GameObject _prefabObj = Instantiate(character.Info.Prefab, transform);
+
+        SkinnedMeshRenderer _mainRend = _prefabObj.GetComponentInChildren<SkinnedMeshRenderer>();
+        _mainRend.enabled = false;
 
         foreach(SkinnedMeshRenderer _rend in GetComponentsInChildren<SkinnedMeshRenderer>())
         {
