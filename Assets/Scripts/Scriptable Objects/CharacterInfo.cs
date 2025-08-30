@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CharacterInfo : ScriptableObject
 {
-    public GameObject Prefab;
+    public GameObject[] Prefabs;
     public Avatar Rig;
     public RuntimeAnimatorController Controller;
     public CharacterAvatarPart[] AvatarParts;
@@ -13,6 +13,8 @@ public class CharacterInfo : ScriptableObject
         public CharacterAvatarPartType Type;
         public CharacterAvatarPartSide Side;
         public GameObject Mesh;
+        [Range(0f, 100f)]
+        public float Health = 100f;
 
         [Space(5f)]
         [Header("Ragdoll")]
@@ -30,20 +32,23 @@ public class CharacterInfo : ScriptableObject
 
     public enum CharacterAvatarPartType
     {
-        Head,
-        Torso,
-        Hips,
-        Thigh,
-        Leg,
-        Calf,
-        Arm,
-        Hand
+        Head = 0,
+        Torso = 10,
+        Hips= 11,
+        Thigh = 20,
+        Leg = 21,
+        Calf = 22,
+        Shoulder = 30,
+        Arm = 31,
+        Forearm = 32,
+        Hand = 33
     }
 
     public enum CharacterAvatarPartSide
     {
-        Left,
-        Right
+        Full = 0,
+        Left = 1,
+        Right = 2
     }
 
     public enum ColliderType

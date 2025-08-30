@@ -7,28 +7,9 @@ public class Enemy : Character
     [SerializeField] float upwardsForce = 100f;
     [SerializeField] float kickOffset = 15f;
 
-    [Space(5f)]
-    [Header("Debug")]
-    [SerializeField] bool debug;
-
     public override void Awake()
     {
         base.Awake();
-
-        foreach (CharacterInfo.CharacterAvatarPart _part in base.Info.AvatarParts)
-        {
-            GameObject _obj = Instantiate(_part.Mesh, transform);
-            SkinnedMeshRenderer _rend = _obj.GetComponentInChildren<SkinnedMeshRenderer>();
-            BodyPart _bodyPart = _rend.gameObject.AddComponent(typeof(BodyPart)) as BodyPart;
-            _bodyPart.Type = _part.Type;
-            _bodyPart.Side = _part.Side;
-
-            if (debug)
-            {
-                foreach(Material _mat in _rend.materials)
-                    _mat.color = _part.DebugColor;
-            }
-        }
     }
 
     public override void Start()

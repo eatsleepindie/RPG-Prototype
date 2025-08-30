@@ -49,7 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf34b925e59d4346a2fd1425abda416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combineRenderers: 1
+  combineMode: 1
+  debug: 1
 --- !u!114 &2869824823460889500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +67,6 @@ MonoBehaviour:
   forceAmount: 100
   upwardsForce: 20
   kickOffset: 15
-  debug: 1
 --- !u!114 &8182872840557417474
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,7 +3,11 @@ using UnityEngine;
 
 public class CharacterAvatar : MonoBehaviour
 {
-    [SerializeField] bool combineRenderers;
+    [SerializeField] CombineMode combineMode;
+
+    [Space(5f)]
+    [Header("Debug")]
+    [SerializeField] bool debug;
 
     Character character;
     Transform head;
@@ -12,9 +16,11 @@ public class CharacterAvatar : MonoBehaviour
     void Awake()
     {
         character = GetComponentInParent<Character>();
-        if (combineRenderers) CombineRenderers();
 
-        foreach (RagdollPart _part in GetComponentsInChildren<RagdollPart>())
+        if(combineMode != CombineMode.None)
+            CombineRenderers();
+
+        foreach (BodyPart _part in GetComponentsInChildren<BodyPart>())
         {
             switch (_part.Type)
             {
@@ -30,7 +36,25 @@ public class CharacterAvatar : MonoBehaviour
 
     void CombineRenderers()
     {
-        GameObject _prefabObj = Instantiate(character.Info.Prefab, transform);
+
+        foreach (CharacterInfo.CharacterAvatarPart _part in character.Info.AvatarParts)
+        {
+            if (_part.Side == CharacterInfo.CharacterAvatarPartSide.Left && combineMode == CombineMode.Right) continue;
+            if (_part.Side == CharacterInfo.CharacterAvatarPartSide.Right && combineMode == CombineMode.Left) continue;
+            GameObject _obj = Instantiate(_part.Mesh, transform);
+            SkinnedMeshRenderer _rend = _obj.GetComponentInChildren<SkinnedMeshRenderer>();
+            BodyPart _bodyPart = _rend.gameObject.AddComponent(typeof(BodyPart)) as BodyPart;
+            _bodyPart.Type = _part.Type;
+            _bodyPart.Side = _part.Side;
+
+            if (debug)
+            {
+                foreach (Material _mat in _rend.materials)
+                    _mat.color = _part.DebugColor;
+            }
+        }
+
+        GameObject _prefabObj = Instantiate(character.Info.Prefabs[((int)combineMode) - 1], transform);
 
         SkinnedMeshRenderer _mainRend = _prefabObj.GetComponentInChildren<SkinnedMeshRenderer>();
         _mainRend.enabled = false;
@@ -70,4 +94,12 @@ public class CharacterAvatar : MonoBehaviour
     public Transform Head { get { return head; } }
 
     public Transform Spine { get { return spine; } }
+
+    public enum CombineMode
+    {
+        None,
+        Full,
+        Left,
+        Right
+    }
 }

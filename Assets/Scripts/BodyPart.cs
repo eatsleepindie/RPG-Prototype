@@ -11,4 +11,11 @@ public class BodyPart : MonoBehaviour
     {
         avatar = GetComponentInParent<CharacterAvatar>();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Weapon")) return;
+
+        Debug.Log(name);
+    }
 }

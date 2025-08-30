@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1041756768290460474}
   - component: {fileID: 6092449947116752450}
   - component: {fileID: 4281844311745685731}
-  - component: {fileID: 1209952210188148378}
+  - component: {fileID: 8765139610604010853}
   m_Layer: 0
   m_Name: _Collider
   m_TagString: Untagged
@@ -130,7 +130,7 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &1209952210188148378
+--- !u!114 &8765139610604010853
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,10 +139,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1707894210776080948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bc3f3b7086a55f4caa47880a4db53ff, type: 3}
+  m_Script: {fileID: 11500000, guid: ca926efe4a385f248b733c16ed47f536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
+  Side: 2
 --- !u!1001 &82762527203189090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -201,7 +202,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3095980526173457267, guid: 6fb4eeb2e4efc4d4781a00f480c459be, type: 3}
       propertyPath: m_Name
-      value: Armored Monk Variant L
+      value: Armored Monk Variant R
+      objectReference: {fileID: 0}
+    - target: {fileID: 3097417019926245904, guid: 6fb4eeb2e4efc4d4781a00f480c459be, type: 3}
+      propertyPath: Side
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6221521670410687118, guid: 6fb4eeb2e4efc4d4781a00f480c459be, type: 3}
+      propertyPath: m_Radius
+      value: 0.0006131444
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725394676311721664, guid: 6fb4eeb2e4efc4d4781a00f480c459be, type: 3}
+      propertyPath: Side
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011706499549484565, guid: 6fb4eeb2e4efc4d4781a00f480c459be, type: 3}
+      propertyPath: Side
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8752895501110095083, guid: 6fb4eeb2e4efc4d4781a00f480c459be, type: 3}
       propertyPath: m_Size.z
@@ -228,6 +245,7 @@ PrefabInstance:
     - {fileID: 3242490094754341561, guid: 6fb4eeb2e4efc4d4781a00f480c459be, type: 3}
     - {fileID: 5086108514774422181, guid: 6fb4eeb2e4efc4d4781a00f480c459be, type: 3}
     - {fileID: 4066290851292410888, guid: 6fb4eeb2e4efc4d4781a00f480c459be, type: 3}
+    - {fileID: 3097417019926245904, guid: 6fb4eeb2e4efc4d4781a00f480c459be, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5998514503904140440, guid: 6fb4eeb2e4efc4d4781a00f480c459be, type: 3}
