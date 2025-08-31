@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class CharacterAvatar : MonoBehaviour
@@ -13,6 +14,8 @@ public class CharacterAvatar : MonoBehaviour
     Transform head;
     Transform spine;
 
+    public Dictionary<CharacterInfo.CharacterAvatarPart, BodyPart> GetBodyPartByType = new Dictionary<CharacterInfo.CharacterAvatarPart, BodyPart>();
+
     void Awake()
     {
         character = GetComponentInParent<Character>();
@@ -20,7 +23,7 @@ public class CharacterAvatar : MonoBehaviour
         if(combineMode != CombineMode.None)
             CombineRenderers();
 
-        foreach (BodyPart _part in GetComponentsInChildren<BodyPart>())
+        foreach (RagdollPart _part in GetComponentsInChildren<RagdollPart>())
         {
             switch (_part.Type)
             {
@@ -46,6 +49,9 @@ public class CharacterAvatar : MonoBehaviour
             BodyPart _bodyPart = _rend.gameObject.AddComponent(typeof(BodyPart)) as BodyPart;
             _bodyPart.Type = _part.Type;
             _bodyPart.Side = _part.Side;
+            _bodyPart.Health = _part.Health;
+
+            GetBodyPartByType.Add(_part, _bodyPart);
 
             if (debug)
             {
@@ -65,6 +71,7 @@ public class CharacterAvatar : MonoBehaviour
             if (_rend == _mainRend) continue;
             CopyBonesWithDictionary(_mainRend, _rend);
         }
+        CharacterCanvas.Instance.Character = character;
     }
 
     public static void CopyBonesWithDictionary(SkinnedMeshRenderer _input, SkinnedMeshRenderer _output)

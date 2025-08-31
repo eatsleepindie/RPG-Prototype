@@ -20,7 +20,7 @@ MonoBehaviour:
   Controller: {fileID: 9100000, guid: 2b6146324320f184188532af32e05723, type: 2}
   AvatarParts:
   - Type: 0
-    Side: 0
+    Side: 1
     Mesh: {fileID: 919132149155446097, guid: c4add6ecf29f2fb47b7e38eeeffc7c12, type: 3}
     Health: 100
     ColliderType: 4
@@ -31,7 +31,7 @@ MonoBehaviour:
     ColliderHeight: 1
     DebugColor: {r: 1, g: 0, b: 0.9689927, a: 1}
   - Type: 0
-    Side: 1
+    Side: 2
     Mesh: {fileID: 919132149155446097, guid: 0798e6741c35c8345aaf43253c78e625, type: 3}
     Health: 100
     ColliderType: 4

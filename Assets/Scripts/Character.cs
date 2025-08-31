@@ -58,6 +58,8 @@ public class Character : MonoBehaviour
         return Stats.Health;
     }
 
+    public virtual void Death() { controller.enabled = false; }
+
     public virtual void Ragdoll() { }
 
     public enum AnimatorLayer

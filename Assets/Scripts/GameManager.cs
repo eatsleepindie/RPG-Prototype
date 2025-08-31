@@ -51,10 +51,7 @@ public class GameManager : MonoBehaviour
     {
         Enemy[] _enemies = GameObject.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         foreach(Enemy _enemy in _enemies)
-        {
-            if (_enemy.Anim.enabled) continue;
             Destroy(_enemy.gameObject);
-        }
     }
 
     public void ToggleTime()

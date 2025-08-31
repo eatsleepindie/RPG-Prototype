@@ -69,7 +69,6 @@ public class PlayerCharacter : Character
                 _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
         }
 
-
         if (base.Weapon != null)
             base.Weapon.Show(swapMode == PlayerCharacterSwapMode.Shadows);
     }

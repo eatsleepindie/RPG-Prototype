@@ -20,6 +20,9 @@ public class Enemy : Character
         base.Anim.runtimeAnimatorController = base.Info.Controller;
         base.IKLook.Target = GameManager.Instance.Players[0].Characters[0].Avatar.Head;
 
+        // duct tape
+        CharacterCanvas.Instance.Character = this;
+
         foreach (Rigidbody _rb in base.Rbs)
             _rb.GetComponent<Collider>().isTrigger = false;
     }
@@ -37,12 +40,19 @@ public class Enemy : Character
             base.Controller.Move(base.Anim.deltaPosition);
     }
 
+    public override void Death()
+    {
+        base.Death();
+        Ragdoll();
+    }
+
     public override void Ragdoll()
     {
         foreach(Rigidbody _rb in base.Rbs)
         {
             _rb.isKinematic = false;
             _rb.linearVelocity = Vector3.zero;
+            _rb.angularVelocity = Vector3.zero;
             _rb.GetComponent<Collider>().isTrigger = false;
         }
         Anim.enabled = false;
